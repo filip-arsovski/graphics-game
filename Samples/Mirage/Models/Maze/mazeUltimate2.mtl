@@ -1,0 +1,22 @@
+# Blender 4.5.4 LTS MTL File: 'mazeUltimate.blend'
+# www.blender.org
+
+newmtl Material.001
+Ns 351.165985
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Brick_Colored_Blue.jpg
+
+newmtl Material.002
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Rough_Square_Concrete_Block.jpg
