@@ -127,8 +127,11 @@ void Camera::Jump(const float currentTime, const float deltaTime, const float ju
 
   Position += WorldUp * Quadratic(timeElapsed, jumpDuration) * deltaTime;
 
-  if (timeElapsed > jumpDuration) jumping = false;
-
+  if (timeElapsed > jumpDuration)
+  {
+    Position.y = 0.298243f; // the player returns to their original vertical position (defined in Maze)
+    jumping = false;
+  }
 }
 
 // Calculates the front vector from the Camera's (updated) Euler Angles
