@@ -34,14 +34,10 @@ namespace Mirage
 
     Mesh::Mesh(std::vector<Vertex> const & vertices,
                std::vector<GLuint> const & indices,
-               std::map<GLuint, std::string> const & textures,
-               std::vector<Triangle> const & faces,
-               std::string name)
+               std::map<GLuint, std::string> const & textures)
                     : mIndices(indices)
                     , mVertices(vertices)
                     , mTextures(textures)
-                    , mFaces(faces)
-                    , mName(name)
     {
         // Bind a Vertex Array Object
         glGenVertexArrays(1, & mVertexArray);
@@ -232,20 +228,10 @@ namespace Mirage
 
         // Create Mesh Indices for Indexed Drawing
         std::vector<GLuint> indices;
-        std::vector<Triangle> faces;
         for (unsigned int i = 0; i < mesh->mNumFaces; i++)
         {
             if (mesh->mFaces[i].mNumIndices == 3)
             {
-                aiVector3D a1 = mesh->mVertices[mesh->mFaces[i].mIndices[0]];
-                glm::vec3 v1 = glm::vec3(a1.x, a1.y, a1.z);
-                aiVector3D a2 = mesh->mVertices[mesh->mFaces[i].mIndices[1]];
-                glm::vec3 v2 = glm::vec3(a2.x, a2.y, a2.z);
-                aiVector3D a3 = mesh->mVertices[mesh->mFaces[i].mIndices[2]];
-                glm::vec3 v3 = glm::vec3(a3.x, a3.y, a3.z);
-                Triangle T(v1, v2, v3);
-                faces.push_back(T);
-
                 for (unsigned int j = 0; j < mesh->mFaces[i].mNumIndices; j++)
                     indices.push_back(mesh->mFaces[i].mIndices[j]);
             }
@@ -260,7 +246,7 @@ namespace Mirage
         textures.insert(specular.begin(), specular.end());
 
         // Create New Mesh Node
-        mSubMeshes.push_back(std::unique_ptr<Mesh>(new Mesh(vertices, indices, textures, faces, name)));
+        mSubMeshes.push_back(std::unique_ptr<Mesh>(new Mesh(vertices, indices, textures)));
     }
 
     std::map<GLuint, std::string> Mesh::process(aiMaterial * material,

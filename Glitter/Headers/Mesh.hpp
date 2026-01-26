@@ -32,9 +32,7 @@ namespace Mirage
         Mesh(std::string const & folder, std::string const & filename);
         Mesh(std::vector<Vertex> const & vertices,
              std::vector<GLuint> const & indices,
-             std::map<GLuint, std::string> const & textures,
-             std::vector<Triangle> const & faces,
-             std::string name);
+             std::map<GLuint, std::string> const & textures);
 
     	Mesh(std::vector<glm::vec2> const & vertices);
     	Mesh(std::vector<glm::vec3> const & vertices);
@@ -57,11 +55,9 @@ namespace Mirage
 
     	std::string folder;
     	std::string filename;
-    	std::string mName;
         std::vector<std::unique_ptr<Mesh>> mSubMeshes;
         std::vector<GLuint> mIndices;
         std::vector<Vertex> mVertices;
-    	std::vector<Triangle> mFaces;
         std::map<GLuint, std::string> mTextures;
 
         GLuint mVertexArray;
