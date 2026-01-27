@@ -5,7 +5,6 @@
 #include "Mesh.hpp"
 
 // System Headers
-#include <iostream>
 #include <../Vendor/stb/stb_image.h>
 
 // Define Namespace

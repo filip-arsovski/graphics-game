@@ -4,12 +4,6 @@
 
 #include "Drawable.hpp"
 
-#include "Bullet.hpp"
-#include "Bullet.hpp"
-#include "Bullet.hpp"
-#include "Bullet.hpp"
-#include "Bullet.hpp"
-#include "Bullet.hpp"
 
 Drawable::Drawable(const std::string &folder, const std::string &file): mesh(folder, file)
 {

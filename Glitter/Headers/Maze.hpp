@@ -15,7 +15,4 @@ class Maze : public Drawable
 		void UpdateShaderMatrix(Camera &camera, int mWidth, int mHeight) override;
 };
 
-
-
-
 #endif //MAZE_HPP

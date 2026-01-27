@@ -22,15 +22,28 @@
 #include <cstdio>
 #include <cstdlib>
 #include <vector>
+#include <memory>
 
 // Class headers
 #include "Camera.hpp"
 #include "Shader.hpp"
 #include "Mesh.hpp"
 #include "Maze.hpp"
+#include "GunView.hpp"
+#include "Lamp.hpp"
+#include "Player.hpp"
+#include "Sky.hpp"
+#include "Enemy.hpp"
+
+
+// Additional headers
 #include "collision.hpp"
 #include "structs.hpp"
 #include "crosshair.hpp"
+#include "rect.hpp"
+#include "cube.hpp"
+#include "enemydata.hpp"
+
 
 // Define Some Constants
 const int mWidth = 1280;

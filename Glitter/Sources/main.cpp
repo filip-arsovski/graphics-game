@@ -1,13 +1,4 @@
-#include <memory>
-#include "cube.hpp"
-#include "Enemy.hpp"
-#include "enemydata.hpp"
 #include "glitter.hpp"
-#include "GunView.hpp"
-#include "Lamp.hpp"
-#include "Player.hpp"
-#include "rect.hpp"
-#include "Sky.hpp"
 
 const std::string program_name = ("Maze game");
 

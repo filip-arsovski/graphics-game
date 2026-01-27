@@ -4,7 +4,6 @@
 
 #include "Maze.hpp"
 
-#include <iostream>
 
 Maze::Maze(const std::string &folder, const std::string &file): Drawable(folder, file){}
 
