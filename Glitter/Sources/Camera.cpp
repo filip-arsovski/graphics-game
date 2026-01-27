@@ -118,14 +118,12 @@ void Camera::ProcessMouseMovement(float xoffset, float yoffset,
   updateCameraVectors();
 }
 
-float Quadratic(const float x, const float t) { return -2 * x + t; }
-
 void Camera::Jump(const float currentTime, const float deltaTime, const float jumpStartTime)
 {
   constexpr float jumpDuration = 0.8f;
   float timeElapsed = currentTime - jumpStartTime;
 
-  Position += WorldUp * Quadratic(timeElapsed, jumpDuration) * deltaTime;
+  Position += WorldUp * (-2 * timeElapsed + jumpDuration) * deltaTime;
 
   if (timeElapsed > jumpDuration)
   {
