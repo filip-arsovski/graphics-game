@@ -70,6 +70,9 @@ bool isColliding(const glm::vec3 position, const Triangle& T, const float thresh
 	if (pointInTriangle(projection, T.p1, T.p2, T.p3) && dot(diff, diff) < threshold * threshold)
 	{
 		collidingT.Normal = T.Normal;
+		collidingT.p1 = T.p1;
+		collidingT.p2 = T.p2;
+		collidingT.p3 = T.p3;
 		return true;
 	}
 

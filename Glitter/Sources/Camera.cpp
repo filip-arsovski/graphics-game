@@ -81,6 +81,10 @@ void Camera::ProcessActions(std::vector<Camera_Action>& actions, Mirage::Mesh& M
 
   if (isColliding(Position, M, 0.2f, T))
   {
+      colliding_triangle.p1 = T.p1;
+      colliding_triangle.p2 = T.p2;
+      colliding_triangle.p3 = T.p3;
+      std::cout<<colliding_triangle.p1.x<<" "<<colliding_triangle.p2.x<<" "<<colliding_triangle.p3.x<<std::endl;
       Position += T.Normal * dot(T.Normal, previousPosition - Position) * 1.1f;
       if (isColliding(Position, M, 0.2f)) Position = previousPosition;
   }

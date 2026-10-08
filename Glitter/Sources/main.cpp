@@ -77,6 +77,7 @@ int main(int argc, char * argv[]) {
     Shader basic("basic.vert", "basic.frag");
     Shader healthBar("healthbar.vert", "healthbar.frag");
     Shader gray3Dshader("gray3Dshader.vert", "gray3Dshader.frag");
+    Shader background_shader("background.vert", "background.frag");
 
     // create maze
     Maze maze("Maze", "maze.obj");
@@ -181,6 +182,9 @@ int main(int argc, char * argv[]) {
             glClearColor(.0f, .0f, .0f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+            sky.UpdateShaderMatrix(camera, mWidth, mHeight);
+            sky.drawMesh(background_shader, player->playerCamera.Position, lamp.position);
+
             maze.UpdateShaderMatrix(camera, mWidth, mHeight);
             maze.drawMesh(shader, player->playerCamera.Position, lamp.position);
             gunView.UpdateShaderMatrix(camera, mWidth, mHeight);
@@ -204,9 +208,6 @@ int main(int argc, char * argv[]) {
                 }
             }
 
-            sky.UpdateShaderMatrix(camera, mWidth, mHeight);
-            sky.drawMesh(gray3Dshader, player->playerCamera.Position, lamp.position);
-
             basic.use();
             float aspect = mWidth * 1.0f / mHeight;
             basic.setFloat("uAspect", aspect);
@@ -223,7 +224,20 @@ int main(int argc, char * argv[]) {
             healthBarMesh.draw(healthBar.ID);
             glEnable(GL_DEPTH_TEST);
 
-
+            std::vector<glm::vec3> vert =
+                {
+                    player->playerCamera.colliding_triangle.p1,
+                    player->playerCamera.colliding_triangle.p2,
+                    player->playerCamera.colliding_triangle.p3
+                };
+            Mirage::Mesh colliding_triangle(vert);
+            shader.use();
+            shader.setMat4("model", maze.shaderMatrix.model);
+            shader.setMat4("view", maze.shaderMatrix.view);
+            shader.setMat4("projection", maze.shaderMatrix.projection);\
+            glDisable(GL_DEPTH_TEST);
+            colliding_triangle.draw(shader.ID);
+            glEnable(GL_DEPTH_TEST);
         }
         else
         {
@@ -241,6 +255,7 @@ int main(int argc, char * argv[]) {
         // Flip Buffers and Draw
         glfwSwapBuffers(mWindow);
         glfwPollEvents();
+
     }
     glfwTerminate();
     return EXIT_SUCCESS;
